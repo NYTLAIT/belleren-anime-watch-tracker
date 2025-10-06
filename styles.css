@@ -1,0 +1,55 @@
+html, body {
+    height: 100vh;
+    margin: 0;
+}
+
+body {
+    background-color: aliceblue;
+    color: darkblue;
+}
+
+header {
+    height: auto;
+    margin: 0.2rem 0.4rem;    
+    border: 1px solid slategray;
+}
+header h1, p {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    height: 88%;
+    margin: 0 0.4rem;
+}
+
+#container {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 2fr;
+    grid-template-areas: 'a b'
+                        'c d';
+    gap: 0.4rem;
+}
+
+#currently-watching {
+    grid-area: a;
+    border: 1px solid slategray;
+}
+
+#new-anime-form {
+    grid-area: b;
+    border: 1px solid slategray;
+}
+
+#watched-anime {
+    grid-area: c;
+    border: 1px solid slategray;
+}
+
+#just-finished{
+    grid-area: d;
+    border: 1px solid slategray;
+}
