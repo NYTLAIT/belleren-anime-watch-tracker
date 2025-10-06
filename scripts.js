@@ -1,12 +1,14 @@
 import data from './data.js'
 
-const animeList = [
-    {
-        startDate: '',
-        endDate: '',
-        title: '',
-        episodeTotal: '',
-        episodeWatched: '',
-        rating: '',
-    }
-]
+const sectionWatching = document.querySelector('#currently-watching')
+const sectionNew = document.querySelector('#new-anime-form')
+const sectionWatched = document.querySelector('#watched-anime')
+const sectionFinished = document.querySelector('#just-finished')
+
+// currently-watching
+
+// new-anime-form
+
+// watched-anime
+
+// just-finished
