@@ -1,4 +1,4 @@
-The Anime Watch Planner & Episode Tracker is a simple yet practical tool designed for organizing your anime-watching experience. Built around dynamic data arrays, it allows users to:
+The Anime Watch Planner & Episode Tracker is a simple yet practical tool designed for organizing your anime-watching experience. Built using [some api], it allows users to:
 
 ## Plan Your Watch Schedule
 
