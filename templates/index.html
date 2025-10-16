@@ -19,7 +19,7 @@
                 </section>
 
                 <section id="add-anime">
-                    <form id="query" method="GET" action="/anime/search">
+                    <form id="query" method="GET" action="/">
                         <label for="form-title">
                             <input id="form-title" type="text" name="name">
                         </label>
@@ -27,14 +27,14 @@
                     </form>
 
                     <form id="query-suggestions">
-                        {% for anime in anime_suggestions%}
+                        {% for anime in anime_suggestions %}
                             <div>
                                 <ul>
                                     <li>[name]</li>
                                     <li>[episodesTotal]</li>
                                 </ul>
                             </div>
-                        {% forend %}
+                        {% endfor %}
                     </form>
                     
                 </section>
