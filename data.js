@@ -1,3 +1,5 @@
+// Just example of core things I need
+
 const animeList = [
     {
         startDate: '',

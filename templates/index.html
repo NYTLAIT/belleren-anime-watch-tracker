@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Anime Completion Tracker and Watch Planner</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
+    </head>
+    <body>
+        <header>
+            <h1>Belleren</h1>
+            <p>Anime Completion Tracker and Watch Planner</p>
+        </header>
+        <main>
+            <div id="container">
+
+                <section id="currently-watching">
+                    <!-- Show all currently watching -->
+                </section>
+
+                <section id="add-anime">
+                    <form id="query" method="GET" action="/anime/search">
+                        <label for="form-title">
+                            <input id="form-title" type="text" name="name">
+                        </label>
+                        <button type="submit" name="Search">Search</button>
+                    </form>
+
+                    <form id="query-suggestions">
+                        {% for anime in anime_suggestions%}
+                            <div>
+                                <ul>
+                                    <li>[name]</li>
+                                    <li>[episodesTotal]</li>
+                                </ul>
+                            </div>
+                        {% forend %}
+                    </form>
+                    
+                </section>
+
+                <section id="watched-anime">
+                    <!-- Show all watched anime -->
+                </section>
+
+                <section id="just-finished">
+                    <!-- Just finished anime -->
+                </section>
+
+            </div>
+        </main>
+        <footer></footer>
+    </body>
+</html>
