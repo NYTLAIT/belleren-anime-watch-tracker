@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<!-- NOTES: -->
+<!-- {{list | join('')}}, jinja syntax for listing out lists into a string -->
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -26,16 +28,32 @@
                         <button type="submit" name="Search">Search</button>
                     </form>
 
-                    <form id="query-suggestions">
+                    <section id="query-suggestions">
+                        <!-- NEEDS WORKING ON BUT JUST NEED TO GET IT ON THERE FOR NOW -->
                         {% for anime in anime_suggestions %}
-                            <div>
-                                <ul>
-                                    <li>[name]</li>
-                                    <li>[episodesTotal]</li>
-                                </ul>
-                            </div>
+                            <form id="selected-anime" method="POST">
+                                <input type="hidden" name="title" value="{{anime.title}}">
+                                <input type="hidden" name="image" value="{{anime.image}}">
+                                <input type="hidden" name="episodes" value="{{anime.episodes}}">
+                                <input type="hidden" name="duration" value="{{anime.duration}}">
+                                <input type="hidden" name="MALurl" value="{{anime.MALurl}}">
+                                <input type="hidden" name="year" value="{{anime.year}}">
+                                <input type="hidden" name="demographics" value="{{anime.demographics}}">
+                                <input type="hidden" name="genres" value="{{anime.genres | join(',')}}">
+                                <div>
+                                    <img src="{{anime.image}}">
+                                    <ul>
+                                        <li>{{anime.title}}</li>
+                                        <li>{{anime.type}} | {{anime.year}}</li>
+                                        <li>{{anime.episodes}} | {{anime.duration}}</li>
+                                        <li>{{anime.demographics}} | {{anime.genres | join(', ')}}</li>
+                                        <li><a href="{{anime.MALurl}}" target="_blank">MyAnimeList</a></li>
+                                        <button type="submmit">+ Add</button>
+                                    </ul>
+                                </div>
+                            </form>
                         {% endfor %}
-                    </form>
+                    </section>
                     
                 </section>
 

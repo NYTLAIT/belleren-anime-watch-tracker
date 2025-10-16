@@ -39,10 +39,25 @@ main {
     border: 1px solid slategray;
 }
 
-#new-anime-form {
+/* ADD ANIME SECTION */
+#add-anime {
     grid-area: b;
     border: 1px solid slategray;
 }
+#add-anime #query-suggestions {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+#add-anime #query-suggestions div {
+    display: flex;
+}
+#add-anime #query-suggestions div ul {
+    display: flex;
+    flex-direction: column;
+}
+/* END ADD ANIME SECTION */
+
 
 #watched-anime {
     grid-area: c;
