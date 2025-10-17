@@ -1,5 +1,6 @@
 import requests
 import json
+import dateparser
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from datetime import datetime, timedelta
 
@@ -27,6 +28,13 @@ print(API_URL)
 # in the parenthesis runs before anything else in the line can
 #------ or is like a fallback thing, refer to anime_info_object['demographics']
 ################################ NOTE ##################################
+
+def transforming_duration(duration):
+    total_minutes = dateparser.parse(duration).hour * 60 + dateparser.parse(duration).minute
+    return total_minutes
+
+def cleaning_duration(duration):
+    
 
 #later:  Rate Limit (Jikan API has no authentication but but has rate limit of 3 requests per second) ################################## Highly doubt to go over that but you never know
 currently_watching = []
@@ -89,6 +97,7 @@ def home():
 
 
     else:
+        getting_duration()
         #currently_watching list already created above
         anime_info = {
             'title': request.form.get('title'),

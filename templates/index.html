@@ -10,7 +10,7 @@
     </head>
     <body>
         <header>
-            <h1>Belleren</h1>
+            <h1>Bellerin</h1>
             <p>Anime Completion Tracker and Watch Planner</p>
         </header>
         <main>
@@ -19,6 +19,7 @@
                 <section id="currently-watching">
                     {% for anime in currently_watching %}
                         <p>{{anime.title}}</p>
+                        <p>{{anime.duration}}</p>
                     {% endfor %}
 
                 </section>
