@@ -1,4 +1,4 @@
-# JUST TO CLEAN STUFF UP
+# JUST TO CLEAN STUFF UP, USED CHATGPT
 
 """ import requests
 import json
