@@ -17,7 +17,10 @@
             <div id="container">
 
                 <section id="currently-watching">
-                    <!-- Show all currently watching -->
+                    {% for anime in currently_watching %}
+                        <p>{{anime.title}}</p>
+                    {% endfor %}
+
                 </section>
 
                 <section id="add-anime">

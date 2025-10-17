@@ -29,13 +29,14 @@ print(API_URL)
 ################################ NOTE ##################################
 
 #later:  Rate Limit (Jikan API has no authentication but but has rate limit of 3 requests per second) ################################## Highly doubt to go over that but you never know
+currently_watching = []
 
 #NOTE - HOME PAGE ROUTE - ###########################################################################################################
 @app.route('/', methods=["GET", "POST"])
 def home():
 
 # TODO currently-watching ############################################################################################################
-    currently_watching = []
+    global currently_watching
 
 # TODO add-anime ################################################################################################################
     
@@ -79,6 +80,13 @@ def home():
             #return (jsonify(anime_suggestions))
             return render_template('index.html', anime_suggestions=anime_suggestions)
                 #dont know why lists are passed on like that but thats for future me to understand
+            
+        else:
+            return render_template('index.html', currently_watching=currently_watching)
+            #Must be render, not redirect
+                #When you open your Flask app in a browser (like http://localhost:5006/),
+                #the browser automatically sends a GET request — always.
+
 
     else:
         #currently_watching list already created above
@@ -97,7 +105,10 @@ def home():
 
         currently_watching.append(anime_info)
             #should be fine calling both anime_info for diff things in if loop, prolly
-        return jsonify(currently_watching)
+        print(currently_watching)
+        return redirect(url_for('home'))
+            #Flask makes another GET request
+
     
 
 # TODO watched-anime #################################################################################################################
