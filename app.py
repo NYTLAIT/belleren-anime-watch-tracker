@@ -1,8 +1,7 @@
 import requests
 import json
-import dateparser
+import re
 from flask import Flask, render_template, request, redirect, url_for, jsonify
-from datetime import datetime, timedelta
 
 app = Flask(__name__)
 
@@ -28,16 +27,39 @@ print(API_URL)
 # in the parenthesis runs before anything else in the line can
 #------ or is like a fallback thing, refer to anime_info_object['demographics']
 ################################ NOTE ##################################
+currently_watching = []
 
-def transforming_duration(duration):
-    total_minutes = dateparser.parse(duration).hour * 60 + dateparser.parse(duration).minute
-    return total_minutes
+#time cleaner/converter
+def cleaned_duration(duration_str):
+    if not duration_str:
+        return None
 
-def cleaning_duration(duration):
+    stripped_duration = duration_str.lower().strip()
+    for string in ("per ep", "per episode", "per eps", "per", "each", "episodes", "episode", "~"):
+        stripped_duration = stripped_duration.replace(string, " ")
+    cleaned = " ".join(stripped_duration.split())
+    print('--------cleaned:', cleaned)
+
+    hour_search = re.search(r'(\d+)\s*(?:h|hr|hrs|hour|hours)\b', cleaned)
+    minute_search  = re.search(r'(\d+)\s*(?:m|min|mins|minute|minutes)\b', cleaned)
+    print('--------hour_search:', hour_search)
+    print('--------minute_search:', minute_search)
+    if hour_search or minute_search:
+        hours = int(hour_search.group(1)) if hour_search else 0
+        minutes = int(minute_search.group(1)) if minute_search else 0
+        print('--------hours:', hours)
+        print('--------minutes:', minutes)
+
+        total_minutes = hours * 60 + minutes
+        print('--------total_minutes:', total_minutes)
+        return total_minutes
+
+#logic for how long itll take to finish
+def finish(anime)
     
 
 #later:  Rate Limit (Jikan API has no authentication but but has rate limit of 3 requests per second) ################################## Highly doubt to go over that but you never know
-currently_watching = []
+
 
 #NOTE - HOME PAGE ROUTE - ###########################################################################################################
 @app.route('/', methods=["GET", "POST"])
@@ -97,7 +119,8 @@ def home():
 
 
     else:
-        getting_duration()
+        duration_minute = cleaned_duration(request.form.get('duration'))
+        print('------duration_minute:', duration_minute)
         #currently_watching list already created above
         anime_info = {
             'title': request.form.get('title'),
