@@ -16,14 +16,41 @@
         <main>
             <div id="container">
 
-                <section id="currently-watching">
-                    {% for anime in currently_watching %}
-                        <p>{{anime.title}}</p>
-                        <p>{{anime.duration}}</p>
-                    {% endfor %}
+<!-- RIGHT MARGIN/ADD ANIME -->
+                <section id="initial-estimate">
+    <!-- CONFIRM ANIME TO ADD -->
+                    <form id="confirmed-anime" method="POST">
+                        <fieldset hidden>
+                            <input type="hidden" name="title" value="{{}}">
+                            <input type="hidden" name="image" value="{{}}">
+                            <input type="hidden" name="episodes" value="{{}}">
+                            <input type="hidden" name="duration" value="{{}}">
+                            <input type="hidden" name="MALurl" value="{{}}">
+                            <input type="hidden" name="year" value="{{}}">
+                            <input type="hidden" name="demographics" value="{{}}">
+                            <input type="hidden" name="genres" value="{{}}">
+                        </fieldset>
+                        <div id="confirmed-anime-desc">
+                            <img src="{{}}">
+                                <ul>
+                                    <li>{{}}</li>
+                                    <li>{{}}</li>
+                                    <li>{{}}</li>
+                                    <li>{{}}</li>
+                                    <li><a href="{{}}" target="_blank">MyAnimeList</a></li>
+                                </ul>
+                        </div>
+                        <fieldset id="estimate-time">
+                            <select name="mode">
+                                <option value="time-available"></option>
+                                <option value="time-goal"></option>
+                            </select>
+                            <
+                        </fieldset>
 
+                    </form>
                 </section>
-
+    <!-- QUERY BAR -->
                 <section id="add-anime">
                     <form id="query" method="GET" action="/">
                         <label for="form-title">
@@ -31,20 +58,13 @@
                         </label>
                         <button type="submit" name="Search">Search</button>
                     </form>
-
+    <!-- SUGGESTED ANIME -->
                     <section id="query-suggestions">
                         <!-- NEEDS WORKING ON BUT JUST NEED TO GET IT ON THERE FOR NOW -->
                         {% for anime in anime_suggestions %}
                             <form id="selected-anime" method="POST">
-                                <input type="hidden" name="title" value="{{anime.title}}">
-                                <input type="hidden" name="image" value="{{anime.image}}">
-                                <input type="hidden" name="episodes" value="{{anime.episodes}}">
-                                <input type="hidden" name="duration" value="{{anime.duration}}">
-                                <input type="hidden" name="MALurl" value="{{anime.MALurl}}">
-                                <input type="hidden" name="year" value="{{anime.year}}">
-                                <input type="hidden" name="demographics" value="{{anime.demographics}}">
-                                <input type="hidden" name="genres" value="{{anime.genres | join(',')}}">
-                                <div>
+
+                                <div id="suggested-animes">
                                     <img src="{{anime.image}}">
                                     <ul>
                                         <li>{{anime.title}}</li>
@@ -58,9 +78,17 @@
                             </form>
                         {% endfor %}
                     </section>
-                    
+
+<!-- LEFT MARGIN -->
+    <!-- CURRENTLY WATCHNG -->
+                <section id="currently-watching">
+                    {% for anime in currently_watching %}
+                        <p>{{anime.title}}</p>
+                        <p>{{anime.duration}}</p>
+                    {% endfor %}
                 </section>
 
+    <!-- WATCHED ANIME -->
                 <section id="watched-anime">
                     <!-- Show all watched anime -->
                 </section>
@@ -68,7 +96,6 @@
                 <section id="just-finished">
                     <!-- Just finished anime -->
                 </section>
-
             </div>
         </main>
         <footer></footer>
